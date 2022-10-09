@@ -1,10 +1,7 @@
-from datetime import datetime
+from wrappers import time_now
 from pyee import EventEmitter
-from httpx import Client, Request, Timeout
+from httpx import Client, Request
 from domain import Domain
-
-def time_now():
-    return datetime.now().strftime('%d/%m/%Y-%H:%M:%S')
 
 class HealthCheck(EventEmitter):
     _client: Client

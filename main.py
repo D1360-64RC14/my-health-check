@@ -3,6 +3,7 @@ import schedule
 from domain import Domain
 from health_check import HealthCheck
 import actions
+from wrappers import print_exception
 
 DOMAINS_TO_CHECK: list[Domain] = [
     Domain('http://snapdrop.raspi'),
@@ -12,7 +13,7 @@ DOMAINS_TO_CHECK: list[Domain] = [
 hc = HealthCheck()
 
 hc.on('host_down', actions.send_notify)
-hc.on('error', actions.error)
+hc.on('error', print_exception)
 
 schedule.every().hour.at(':00').do(hc.run_checks, DOMAINS_TO_CHECK)
 

@@ -1,9 +1,5 @@
-from sys import stderr
 from httpx import Response
 from subprocess import Popen
-
-def error(err: Exception):
-    print(err, file=stderr)
 
 def send_notify(res: Response):
     Popen([
